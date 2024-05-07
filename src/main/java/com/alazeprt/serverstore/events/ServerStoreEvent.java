@@ -41,7 +41,6 @@ public class ServerStoreEvent implements StoreEvent {
 
     @Override
     public void onSell() {
-        System.out.println("Sell Event: " + money.doubleValue() + " ? " + config.getString("stop.money"));
         if(money.compareTo(new BigDecimal(config.getString("stop.money"))) < 0) {
             onStop();
         }

@@ -25,8 +25,6 @@ public class DataUtils {
         BigDecimal player_amount = new BigDecimal(data.getString("sell." + project + ".players." + player) == null ?
                 "0" : data.getString("sell." + project + ".players." + player));
         player_amount = player_amount.add(addAmount);
-        System.out.println("Player Sell Origin: " + data.getString("sell." + project + ".players." + player));
-        System.out.println("Sell: " + player_amount.doubleValue() + " + " + addAmount.doubleValue() + " ? " + store.getString("sell." + project + ".player_limit"));
         return player_amount.compareTo(new BigDecimal(store.getString("sell." + project + ".player_limit"))) <= 0;
     }
 
@@ -36,9 +34,7 @@ public class DataUtils {
         }
         BigDecimal player_amount = new BigDecimal(data.getString("buy." + project + ".players." + player) == null ?
                 "0" : data.getString("buy." + project + ".players." + player));
-        System.out.println(addAmount.doubleValue());
         player_amount = player_amount.add(addAmount);
-        System.out.println("Buy: " + player_amount.doubleValue() + " + " + addAmount.doubleValue() + " ? " + store.getString("buy." + project + ".player_limit"));
         return player_amount.compareTo(new BigDecimal(store.getString("buy." + project + ".player_limit"))) <= 0;
     }
 
