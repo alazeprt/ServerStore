@@ -8,6 +8,12 @@ sell:
   # Whether to limit the number of sells per item by total
   total_limit: false
 
+  # Whether to limit the number of resets per item
+  reset_limit: true
+
+  # How often to reset sells limits (hours)
+  reset_time: 24
+
   # Sample item #1
   test1:
     # Sold item
@@ -36,6 +42,12 @@ buy:
 
   # Whether to limit the number of buys per item by total
   total_limit: false
+
+  # Whether to limit the number of resets per item
+  reset_limit: true
+
+  # How often to reset sells limits (hours)
+  reset_time: 24
 
   # Sample item #1
   test1:

@@ -63,4 +63,12 @@ public class DataUtils {
         }
         return addAmount.compareTo(new BigDecimal(store.getString("buy." + project + ".total_limit"))) <= 0;
     }
+
+    public static void resetSellData() {
+        data.set("sell", null);
+    }
+
+    public static void resetBuyData() {
+        data.set("buy", null);
+    }
 }

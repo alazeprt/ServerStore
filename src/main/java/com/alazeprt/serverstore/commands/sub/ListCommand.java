@@ -1,6 +1,7 @@
 package com.alazeprt.serverstore.commands.sub;
 
 import com.alazeprt.serverstore.commands.SubCommand;
+import com.alazeprt.serverstore.utils.TimeUtils;
 import org.bukkit.command.CommandSender;
 
 import static com.alazeprt.serverstore.ServerStorePlugin.store;
@@ -37,7 +38,8 @@ public class ListCommand implements SubCommand {
     private void sendSellList(CommandSender sender) {
         sender.sendMessage("§9收购物品列表:");
         for(String key : store.getConfigurationSection("sell").getKeys(false)) {
-            if(key.equalsIgnoreCase("player_limit") || key.equalsIgnoreCase("total_limit")) {
+            if(key.equalsIgnoreCase("player_limit") || key.equalsIgnoreCase("total_limit") ||
+                    key.equalsIgnoreCase("reset_time") || key.equalsIgnoreCase("reset_limit")) {
                 continue;
             }
             sender.sendMessage("§9" + key + ": ");
@@ -45,10 +47,12 @@ public class ListCommand implements SubCommand {
             sender.sendMessage("  §7数量: " + store.getString("sell." + key + ".amount"));
             sender.sendMessage("  §7价格: " + store.getString("sell." + key + ".price"));
             if(store.getBoolean("sell.player_limit")) {
-                sender.sendMessage("  §7单个玩家限购: " + store.getString("sell." + key + ".player_limit"));
+                sender.sendMessage("  §7单个玩家限购(" + TimeUtils.formatTime(store.getLong("sell.reset_time")) +
+                        "): " + store.getString("sell." + key + ".player_limit"));
             }
             if(store.getBoolean("sell.total_limit")) {
-                sender.sendMessage("  §7服务器总限购: " + store.getString("sell." + key + ".total_limit"));
+                sender.sendMessage("  §7服务器总限购(" + TimeUtils.formatTime(store.getLong("sell.reset_time")) +
+                        "): " + store.getString("sell." + key + ".total_limit"));
             }
         }
     }
@@ -56,7 +60,8 @@ public class ListCommand implements SubCommand {
     private void sendBuyList(CommandSender sender) {
         sender.sendMessage("§c购买物品列表:");
         for(String key : store.getConfigurationSection("buy").getKeys(false)) {
-            if(key.equalsIgnoreCase("player_limit") || key.equalsIgnoreCase("total_limit")) {
+            if(key.equalsIgnoreCase("player_limit") || key.equalsIgnoreCase("total_limit")
+                    || key.equalsIgnoreCase("reset_time") || key.equalsIgnoreCase("reset_limit")) {
                 continue;
             }
             sender.sendMessage("§c" + key + ": ");
@@ -64,10 +69,10 @@ public class ListCommand implements SubCommand {
             sender.sendMessage("  §7数量: " + store.getString("buy." + key + ".amount"));
             sender.sendMessage("  §7价格: " + store.getString("buy." + key + ".price"));
             if(store.getBoolean("buy.player_limit")) {
-                sender.sendMessage("  §7单个玩家限购: " + store.getString("buy." + key + ".player_limit"));
+                sender.sendMessage("  §7单个玩家限购(" + TimeUtils.formatTime(store.getLong("buy.reset_time")) + "): " + store.getString("buy." + key + ".player_limit"));
             }
             if(store.getBoolean("buy.total_limit")) {
-                sender.sendMessage("  §7服务器总限购: " + store.getString("buy." + key + ".total_limit"));
+                sender.sendMessage("  §7服务器总限购(" + TimeUtils.formatTime(store.getLong("buy.reset_time")) + "): " + store.getString("buy." + key + ".total_limit"));
             }
         }
     }
