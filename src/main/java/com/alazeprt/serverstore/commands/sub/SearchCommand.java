@@ -14,10 +14,10 @@ public class SearchCommand implements SubCommand {
         }
         sender.sendMessage("§9收购物品搜索结果:");
         for(String key : store.getConfigurationSection("sell").getKeys(false)) {
-            if(!key.contains(args[1]) && !store.getString("sell." + key + ".item").contains(args[1])) {
+            if(key.equalsIgnoreCase("player_limit") || key.equalsIgnoreCase("total_limit")) {
                 continue;
             }
-            if(key.equalsIgnoreCase("player_limit") || key.equalsIgnoreCase("total_limit")) {
+            if(!key.contains(args[1]) && !store.getString("sell." + key + ".item").contains(args[1])) {
                 continue;
             }
             sender.sendMessage("§9" + key + ": ");
@@ -33,10 +33,10 @@ public class SearchCommand implements SubCommand {
         }
         sender.sendMessage("§c购买物品搜索结果:");
         for(String key : store.getConfigurationSection("buy").getKeys(false)) {
-            if(!key.contains(args[1]) && !store.getString("buy." + key + ".item").contains(args[1])) {
+            if(key.equalsIgnoreCase("player_limit") || key.equalsIgnoreCase("total_limit")) {
                 continue;
             }
-            if(key.equalsIgnoreCase("player_limit") || key.equalsIgnoreCase("total_limit")) {
+            if(!key.contains(args[1]) && !store.getString("buy." + key + ".item").contains(args[1])) {
                 continue;
             }
             sender.sendMessage("§c" + key + ": ");
