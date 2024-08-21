@@ -89,7 +89,7 @@ public class ServerStorePlugin extends JavaPlugin {
         addEvent(new ServerStoreEvent());
         eventList.forEach(StoreEvent::onEnable);
         if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
-            new ServerStoreExpansion(this).register();
+            new ServerStoreExpansion().register();
         }
         getLogger().info("ServerStore is ready! (" + (System.currentTimeMillis() - start) + " ms)");
     }
