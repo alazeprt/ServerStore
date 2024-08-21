@@ -3,6 +3,7 @@ package com.alazeprt.serverstore;
 import com.alazeprt.serverstore.commands.MainCommand;
 import com.alazeprt.serverstore.events.ServerStoreEvent;
 import com.alazeprt.serverstore.events.StoreEvent;
+import com.alazeprt.serverstore.papi.ServerStoreExpansion;
 import com.alazeprt.serverstore.utils.DataUtils;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
@@ -87,6 +88,9 @@ public class ServerStorePlugin extends JavaPlugin {
         getLogger().info("Enabling events");
         addEvent(new ServerStoreEvent());
         eventList.forEach(StoreEvent::onEnable);
+        if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
+            new ServerStoreExpansion(this).register();
+        }
         getLogger().info("ServerStore is ready! (" + (System.currentTimeMillis() - start) + " ms)");
     }
 
