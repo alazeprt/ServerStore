@@ -27,10 +27,7 @@ public class ServerStoreExpansion extends PlaceholderExpansion {
 
     @Override
     public String onRequest(OfflinePlayer player, @NotNull String params) {
-        System.out.println(params);
-        System.out.println(params.substring(4, params.length() - 8));
-        System.out.println(store.contains("buy." + params.substring(4, params.length() - 8)));
-        if (params.startsWith("buy_") && params.endsWith("_amount") && store.contains("buy." + params.substring(4, params.length() - 8))) {
+        if (params.startsWith("buy_") && params.endsWith("_amount") && store.contains("buy." + params.substring(4, params.length() - 7))) {
             String project = params.substring(4, params.length() - 8);
             return data.getString("buy." + project + ".players." + player.getName()) == null ?
                     "0" : data.getString("buy." + project + ".players." + player.getName());
@@ -38,16 +35,16 @@ public class ServerStoreExpansion extends PlaceholderExpansion {
             String project = params.substring(4, params.length() - 8);
             return data.getString("sell." + project + ".players." + player.getName()) == null ?
                     "0" : data.getString("sell." + project + ".players." + player.getName());
-        } else if (params.startsWith("buy_") && params.endsWith("_player_limit") && store.contains("buy." + params.substring(4, params.length() - 14))) {
+        } else if (params.startsWith("buy_") && params.endsWith("_player_limit") && store.contains("buy." + params.substring(4, params.length() - 13))) {
             String project = params.substring(4, params.length() - 14);
             return store.getString("buy." + project + ".player_limit");
-        } else if (params.startsWith("sell_") && params.endsWith("_player_limit") && store.contains("sell." + params.substring(5, params.length() - 14))) {
+        } else if (params.startsWith("sell_") && params.endsWith("_player_limit") && store.contains("sell." + params.substring(5, params.length() - 13))) {
             String project = params.substring(4, params.length() - 14);
             return store.getString("sell." + project + ".player_limit");
-        } else if (params.startsWith("buy_") && params.endsWith("_total_limit") && store.contains("buy." + params.substring(4, params.length() - 13))) {
+        } else if (params.startsWith("buy_") && params.endsWith("_total_limit") && store.contains("buy." + params.substring(4, params.length() - 12))) {
             String project = params.substring(4, params.length() - 13);
             return store.getString("buy." + project + ".total_limit");
-        } else if (params.startsWith("sell_") && params.endsWith("_total_limit") && store.contains("sell." + params.substring(5, params.length() - 13))) {
+        } else if (params.startsWith("sell_") && params.endsWith("_total_limit") && store.contains("sell." + params.substring(5, params.length() - 12))) {
             String project = params.substring(4, params.length() - 13);
             return store.getString("sell." + project + ".total_limit");
         } else if (params.startsWith("buy_") && params.endsWith("_player_buy") && store.contains("buy." + params.substring(4, params.length() - 11))) {
