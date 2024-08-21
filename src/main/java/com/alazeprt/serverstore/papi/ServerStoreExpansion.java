@@ -2,6 +2,7 @@ package com.alazeprt.serverstore.papi;
 
 import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.NotNull;
+import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 
 import static com.alazeprt.serverstore.ServerStorePlugin.data;
 import static com.alazeprt.serverstore.ServerStorePlugin.store;
