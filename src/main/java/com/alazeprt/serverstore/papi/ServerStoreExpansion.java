@@ -27,6 +27,7 @@ public class ServerStoreExpansion extends PlaceholderExpansion {
 
     @Override
     public String onRequest(OfflinePlayer player, @NotNull String params) {
+        System.out.println(params);
         if (params.startsWith("buy_") && params.endsWith("_amount") && store.contains("buy." + params.substring(4, params.length() - 8))) {
             String project = params.substring(4, params.length() - 8);
             return data.getString("buy." + project + ".players." + player.getName()) == null ?
